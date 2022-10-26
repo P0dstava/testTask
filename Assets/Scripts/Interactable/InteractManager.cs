@@ -28,7 +28,7 @@ public class InteractManager : MonoBehaviour
                 if(Vector2.Distance(interactPoint.transform.position, obj.GetComponent<Transform>().position) > interactRange)
                     obj = null;
 
-                if(Input.GetMouseButton(0) && obj && !dialogueManager.dialogueInProgress)
+                if(Input.GetKeyUp(KeyCode.E) && obj && !dialogueManager.dialogueInProgress)
                 {
                     Interact(obj);
                 }

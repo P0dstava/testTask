@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
     
     public DialogueScriptableObject dialogueFile;
    
-    public bool dialogueInProgress = false, sentenceFinished = true;
+    public bool dialogueInProgress = false, sentenceFinished = true, canStartDialogue = true;
     
     private Queue<string> sentences;
     public Queue<Dialogue> Dialogues;
@@ -54,18 +54,18 @@ public class DialogueManager : MonoBehaviour
         {
             Dialogues.Enqueue(dialogueFile.dialogues[i]);
         }
-
-        StartDialogue();
+        if(canStartDialogue)
+            StartDialogue();
     }
 
     //Starting dialogue
     public void StartDialogue()
     {   
+        canStartDialogue = false;
         dialogueInProgress = true;
         dialogue = Dialogues.Dequeue();
         ContinueDialogue(dialogue);
         dialBox.GetComponent<Canvas>().enabled = true;
-        StopingPlayer();
     }
 
     //Check if we have more sentences and if dialogue contains Name than we display nameBox
@@ -150,17 +150,12 @@ public class DialogueManager : MonoBehaviour
     {   
         Dialogues.Clear();
         dialBox.GetComponent<Canvas>().enabled = false;
-        StartingPlayer();
         dialogueInProgress = false;
+        Invoke("TurnOnCanStartDialogue",1f);
     }
 
-    void StopingPlayer()
+    void TurnOnCanStartDialogue()
     {
-        //Stop player
-    }
-
-    void StartingPlayer()
-    {
-        //Start player
+        canStartDialogue = true;
     }
 }
