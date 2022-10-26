@@ -10,8 +10,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        m_mainMenu.SetActive(true);
-        m_tutorialMenu.SetActive(false);
+        Back();
     }
 
     public void ShowTutorial()
@@ -28,5 +27,11 @@ public class Menu : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void Back()
+    {
+        m_mainMenu.SetActive(true);
+        m_tutorialMenu.SetActive(false);
     }
 }
