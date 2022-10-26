@@ -8,11 +8,11 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
-        
+        transform.localEulerAngles = new Vector3(40, 0, 0);
     }
 
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, 7f, player.transform.position.z - 5f);
     }
 }
