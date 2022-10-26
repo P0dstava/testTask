@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 6f, sensitivity = 1000f, turnSmoothTime = 0.1f, turnSmoothVelocity;
     public CharacterController controller;
+    DialogueManager dialogueManager;
     
     void Start()
     {
-        
+        dialogueManager = DialogueManager.instance;
     }
     
     void Update()
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
 
-        if(direction.magnitude >= .1f)
+        if(direction.magnitude >= .1f && !dialogueManager.dialogueInProgress)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);

@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     
     public void Interact()
     {
-        dialogueManager.TriggerDialogue(dialogueFile);
+        if(dialogueManager.canStartDialogue)
+            dialogueManager.TriggerDialogue(dialogueFile);
     }
 }
