@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText, dialogueText;
     public Canvas dialBox;
     //public Collider2D player;
-    public GameObject nameBox;
+    public GameObject nameBox, eImage;
     
     public DialogueScriptableObject dialogueFile;
    
@@ -90,6 +90,7 @@ public class DialogueManager : MonoBehaviour
     //Dequeueing sentences
     public void DisplayNextSentence()
     {   
+        eImage.SetActive(false);
         if (sentences.Count == 0)
         {
             DisplayNextDialogue();
@@ -130,6 +131,7 @@ public class DialogueManager : MonoBehaviour
             {
                     sentenceFinished = true;
                     i = letters.Length;
+                    eImage.SetActive(true);
                     yield break;
             }
         }
